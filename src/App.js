@@ -3,7 +3,6 @@ import './App.css';
 import Parcel from './components/Parcel';
 
 function App() {
-	// const [data, setData] = useState();
 	// check localstorage for data?
 
 	// save back to localstorage if new parcel
@@ -15,9 +14,6 @@ function App() {
 
 	// for each parcel in ourArr call api for latest info and render card component
 
-	// if (!bla) {
-	// 	return <div>Loading ...</div>;
-	// } else {
 	return (
 		<div className='App'>
 			<h1>Parcelfinder - add font awesome logo</h1>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Parcel = ({ shipNr }) => {
-	const [data, setData] = useState('');
+	const [info, setInfo] = useState([]);
 
 	const options = {
 		method: 'GET',
@@ -16,14 +16,15 @@ const Parcel = ({ shipNr }) => {
 		axios
 			.request(options)
 			.then(function (response) {
-				setData(response.data);
+				const allData = response.data.shipments;
+				setInfo(allData);
 			})
 			.catch(function (error) {
 				console.error(error);
 			});
 	}, []);
 
-	return <div>{data ? 'yes' : 'no'}</div>;
+	return <div>{info ? 'yes' : 'no'}</div>;
 };
 
 export default Parcel;
