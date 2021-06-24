@@ -1,0 +1,3 @@
+response.data.shipments[0].status.statusCode
+response.data.shipments[0].status.timestamp
+response.data.shipments[0].status.status

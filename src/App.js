@@ -1,8 +1,9 @@
 import './App.css';
-import axios from 'axios';
+
 import Parcel from './components/Parcel';
 
 function App() {
+	// const [data, setData] = useState();
 	// check localstorage for data?
 
 	// save back to localstorage if new parcel
@@ -14,22 +15,9 @@ function App() {
 
 	// for each parcel in ourArr call api for latest info and render card component
 
-	const options = {
-		method: 'GET',
-		url: 'https://api-eu.dhl.com/track/shipments',
-		params: { trackingNumber: '142775112730' },
-		headers: { 'DHL-API-Key': `${process.env.REACT_APP_DHL_API_KEY}` },
-	};
-
-	axios
-		.request(options)
-		.then(function (response) {
-			console.log(response.data.shipments[0].status.statusCode);
-		})
-		.catch(function (error) {
-			console.error(error);
-		});
-
+	// if (!bla) {
+	// 	return <div>Loading ...</div>;
+	// } else {
 	return (
 		<div className='App'>
 			<h1>Parcelfinder - add font awesome logo</h1>
@@ -37,9 +25,10 @@ function App() {
 				<input type='text' />
 				<button type='submit'>Submit</button>
 			</form>
+
 			<div className='card-container'>
 				{ships.map((item, index) => {
-					return <Parcel key={index} />;
+					return <Parcel key={index} shipNr={item.shipNr} />;
 				})}
 			</div>
 		</div>
