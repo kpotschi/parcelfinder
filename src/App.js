@@ -25,6 +25,13 @@ function App() {
 		]);
 	};
 
+	const eraseHandler = (e) => {
+		setShips((oldShips) =>
+			oldShips.filter((item) => item.shipNr !== e.target.parentElement.id)
+		);
+		console.log(e.target.parentElement.id);
+	};
+
 	return (
 		<div className='App'>
 			<h1 className='header'>
@@ -44,7 +51,13 @@ function App() {
 			</form>
 			<div className='card-container'>
 				{ships.map((item, index) => {
-					return <Parcel key={index} shipNr={item.shipNr} />;
+					return (
+						<Parcel
+							key={index}
+							eraseHandler={eraseHandler}
+							shipNr={item.shipNr}
+						/>
+					);
 				})}
 			</div>
 		</div>

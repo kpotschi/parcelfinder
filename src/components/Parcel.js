@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import dhlLogo from '../images/dhl-brands.svg';
 
-const Parcel = ({ shipNr }) => {
+const Parcel = ({ shipNr, eraseHandler }) => {
 	const [info, setInfo] = useState([]);
 
 	const options = {
@@ -27,8 +27,8 @@ const Parcel = ({ shipNr }) => {
 	}, []);
 
 	return (
-		<div className='card'>
-			<span className='hide'></span>
+		<div className='card' id={shipNr}>
+			<span className='hide' onClick={eraseHandler}></span>
 			<div className='card-row'>
 				<h3>DHL Shipment</h3>
 				<img src={dhlLogo} className='provider-logo' alt='Provider Logo' />
