@@ -1,17 +1,24 @@
 import './App.css';
 import logo from './images/shipping-fast-solid.svg';
-
+import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel';
 
 function App() {
-	// check localstorage for data?
+	const [ships, setShips] = useState([]);
 
-	// save back to localstorage if new parcel
+	useEffect(() => {
+		if (localStorage.getItem('localList')) {
+			JSON.parse(localStorage.getItem('localList')).forEach((item) => {
+				ships.push(item);
+			});
+		}
+	}, []);
 
-	const ships = [
-		{ shipNr: '142775112730', delService: 'DHL' },
-		{ shipNr: '4381443301', delService: 'DHL' },
-	];
+	const submitHandler = (e) => {
+		e.preventDefault();
+		console.log(e.target.shipInput.value);
+		localStorage.setItem('localList', JSON.stringify(ships));
+	};
 
 	return (
 		<div className='App'>
@@ -19,9 +26,10 @@ function App() {
 				<span className='strong'>Parcel</span>finder
 				<img src={logo} className='logo' alt='Parcelfinder Logo'></img>
 			</h1>
-			<form className='form'>
+			<form className='form' onSubmit={submitHandler}>
 				<input
 					type='text'
+					name='shipInput'
 					className='input'
 					placeholder='Enter shipment number here'
 				/>

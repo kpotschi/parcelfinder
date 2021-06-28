@@ -23,6 +23,7 @@ const Parcel = ({ shipNr }) => {
 			.catch(function (error) {
 				console.error(error);
 			});
+		//eslint-disable-next-line
 	}, []);
 
 	return (
@@ -38,7 +39,7 @@ const Parcel = ({ shipNr }) => {
 			</div>
 			<div className='card-row'>
 				<span>Destination: </span>
-				<span>{info ? 'yes' : 'no'}</span>
+				<span>{info[0]?.events[0].description}</span>
 			</div>
 			<div className='card-row'>
 				<span>Current location: </span>
