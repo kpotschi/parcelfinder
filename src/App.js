@@ -1,5 +1,7 @@
 import "./App.css";
 import axios from "axios";
+import logo from "./images/shipping-fast-solid.svg";
+import dhlLogo from "./images/dhl-brands.svg";
 // import Parcel from './components/Parcel';
 
 function App() {
@@ -34,14 +36,47 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Parcelfinder - add font awesome logo</h1>
-      <form>
-        <input type="text" />
-        <button type="submit">Submit</button>
+      <h1 className="header">
+        <span className="strong">Parcel</span>finder
+        <img src={logo} className="logo"></img>
+      </h1>
+      <form className="form">
+        <input
+          type="text"
+          className="input"
+          placeholder="Enter shipment number here"
+        />
+        <button type="submit" className="submit">
+          Search
+        </button>
       </form>
       <div className="card-container">
         {ships.map((item, index) => {
-          return <h3>Parcel Card</h3>;
+          return (
+            <div className="card">
+              <span className="hide"></span>
+              <div className="card-row">
+                <h3>DHL Shipment</h3>
+                <img src={dhlLogo} className="provider-logo" />
+              </div>
+              <div className="card-row">
+                <span>Tracking number: </span>
+                <span> 8475947598734 </span>
+              </div>
+              <div className="card-row">
+                <span>Destination: </span>
+                <span>Berlin, Germany</span>
+              </div>
+              <div className="card-row">
+                <span>Current location: </span>
+                <span>Kitzingen, Germany</span>
+              </div>
+              <div className="card-row">
+                <span>Expected delivery: </span>
+                <span>Date</span>
+              </div>
+            </div>
+          );
           {
             /* return <Parcel key={index} />; */
           }
