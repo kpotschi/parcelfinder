@@ -1,17 +1,18 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import dhlLogo from '../images/dhl-brands.svg';
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import dhlLogo from "../images/dhl-brands.svg";
+
 
 const Parcel = ({ shipNr, eraseHandler }) => {
 	const [info, setInfo] = useState([]);
 
-	const options = {
-		method: 'GET',
-		url: 'https://api-eu.dhl.com/track/shipments',
-		params: { trackingNumber: `${shipNr}` },
-		headers: { 'DHL-API-Key': `${process.env.REACT_APP_DHL_API_KEY}` },
-	};
+  const options = {
+    method: "GET",
+    url: "https://api-eu.dhl.com/track/shipments",
+    params: { trackingNumber: `${shipNr}` },
+    headers: { "DHL-API-Key": `${process.env.REACT_APP_DHL_API_KEY}` },
+  };
 
 	useEffect(() => {
 		axios
@@ -51,6 +52,7 @@ const Parcel = ({ shipNr, eraseHandler }) => {
 			</div>
 		</div>
 	);
+
 };
 
 export default Parcel;
