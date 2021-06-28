@@ -6,18 +6,23 @@ import Parcel from './components/Parcel';
 function App() {
 	const [ships, setShips] = useState([]);
 
+	//localstorage logic
 	useEffect(() => {
 		if (localStorage.getItem('localList')) {
-			JSON.parse(localStorage.getItem('localList')).forEach((item) => {
-				ships.push(item);
-			});
+			setShips(JSON.parse(localStorage.getItem('localList')));
 		}
 	}, []);
 
+	useEffect(() => {
+		localStorage.setItem('localList', JSON.stringify(ships));
+	}, [ships]);
+
 	const submitHandler = (e) => {
 		e.preventDefault();
-		console.log(e.target.shipInput.value);
-		localStorage.setItem('localList', JSON.stringify(ships));
+		setShips((oldShips) => [
+			...oldShips,
+			{ shipNr: `${e.target.shipInput.value}`, delService: 'DHL' },
+		]);
 	};
 
 	return (
