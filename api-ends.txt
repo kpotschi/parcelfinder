@@ -1,3 +1,2 @@
-response.data.shipments[0].status.statusCode
-response.data.shipments[0].status.timestamp
-response.data.shipments[0].status.status
+info[0]?.events[0].description
+info[0]?.events[0].status.statusCode
