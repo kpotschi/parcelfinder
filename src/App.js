@@ -19,17 +19,43 @@ function App() {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+
+		// question mark operator
+		document.querySelector('#errorMsg')?.remove();
+
+		// if (document.querySelector('#errorMsg')) {
+		// 	document.querySelector('#errorMsg').remove();
+		// }
+
+		if (duplicateCheck(e.target.shipInput.value)) {
+			let errorDisplay = document.createElement('p');
+			errorDisplay.innerText = 'Parcel already in list';
+			errorDisplay.id = 'errorMsg';
+
+			document
+				.querySelector('#form')
+				.parentNode.insertBefore(
+					errorDisplay,
+					document.querySelector('#form').nextSibling
+				);
+
+			return;
+		}
+
 		setShips((oldShips) => [
 			...oldShips,
 			{ shipNr: `${e.target.shipInput.value}`, delService: 'DHL' },
 		]);
 	};
 
+	// forEach didn't work here
+	const duplicateCheck = (inputNumber) =>
+		ships.some((elem) => elem.shipNr === inputNumber);
+
 	const eraseHandler = (e) => {
 		setShips((oldShips) =>
 			oldShips.filter((item) => item.shipNr !== e.target.parentElement.id)
 		);
-		console.log(e.target.parentElement.id);
 	};
 
 	return (
@@ -38,7 +64,7 @@ function App() {
 				<span className='strong'>Parcel</span>finder
 				<img src={logo} className='logo' alt='Parcelfinder Logo'></img>
 			</h1>
-			<form className='form' onSubmit={submitHandler}>
+			<form className='form' id='form' onSubmit={submitHandler}>
 				<input
 					type='text'
 					name='shipInput'
