@@ -49,7 +49,7 @@ const Parcel = ({ shipNr, eraseHandler }) => {
       </div>
       <div className="card-row">
         <span>Expected delivery: </span>
-        <span>Date</span>
+        <span>here could be a very long sentence</span>
       </div>
     </div>
   );

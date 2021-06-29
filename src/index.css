@@ -134,6 +134,10 @@ body {
   margin-bottom: 0.3rem;
 }
 
+.card span:nth-child(2) {
+  text-align: right;
+}
+
 .hide {
   height: 21px;
   width: 21px;
