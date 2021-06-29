@@ -1,61 +1,95 @@
-
 import './App.css';
 import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel';
+import axios from 'axios';
 
 function App() {
-	const [ships, setShips] = useState([]);
+	const [beforeData, setBeforeData] = useState([]);
+	const [afterData, setAfterData] = useState([]);
 
-	//localstorage logic
 	useEffect(() => {
 		if (localStorage.getItem('localList')) {
-			setShips(JSON.parse(localStorage.getItem('localList')));
+			JSON.parse(localStorage.getItem('localList')).forEach((item) =>
+				fetchTrackingInfo(item.shipNr)
+			);
 		}
 	}, []);
 
 	useEffect(() => {
-		localStorage.setItem('localList', JSON.stringify(ships));
-	}, [ships]);
+		localStorage.setItem('localList', JSON.stringify(beforeData));
+	}, [beforeData]);
 
+	const fetchTrackingInfo = (number) => {
+		const options = {
+			method: 'GET',
+			url: 'https://api-eu.dhl.com/track/shipments',
+			params: { trackingNumber: `${number}` },
+			headers: { 'DHL-API-Key': `${process.env.REACT_APP_DHL_API_KEY}` },
+		};
+
+		axios
+			.request(options)
+			.then(function (response) {
+				const parcelData = response.data.shipments;
+				setBeforeData((oldBefore) => [
+					...oldBefore,
+					{ shipNr: parcelData[0].id, carrier: 'DHL' },
+				]);
+				setAfterData((oldAfter) => [...oldAfter, parcelData[0]]);
+			})
+			.catch(function (error) {
+				switch (error.response.status) {
+					case 400:
+						showError('Parcel not found');
+						break;
+					case 429:
+						showError('No more API requests possible');
+						break;
+					default:
+						showError('Unknown error');
+						break;
+				}
+			});
+	};
+
+	// // error logic
+
+	const showError = (message) => {
+		let errorDisplay = document.createElement('p');
+		errorDisplay.innerText = message;
+		errorDisplay.className = 'errorMsg';
+
+		document
+			.querySelector('#form')
+			.parentNode.insertBefore(
+				errorDisplay,
+				document.querySelector('#form').nextSibling
+			);
+	};
+
+	//submit logic
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		// question mark operator
-		document.querySelector('#errorMsg')?.remove();
+		document.querySelector('.errorMsg')?.remove();
 
-		// if (document.querySelector('#errorMsg')) {
-		// 	document.querySelector('#errorMsg').remove();
-		// }
-
-		if (duplicateCheck(e.target.shipInput.value)) {
-			let errorDisplay = document.createElement('p');
-			errorDisplay.innerText = 'Parcel already in list';
-			errorDisplay.id = 'errorMsg';
-
-			document
-				.querySelector('#form')
-				.parentNode.insertBefore(
-					errorDisplay,
-					document.querySelector('#form').nextSibling
-				);
+		if (beforeData.some((elem) => elem.shipNr === e.target.shipInput.value)) {
+			showError('Parcel already in list');
 
 			return;
 		}
 
-		setShips((oldShips) => [
-			...oldShips,
-			{ shipNr: `${e.target.shipInput.value}`, delService: 'DHL' },
-		]);
+		fetchTrackingInfo(e.target.shipInput.value);
 	};
 
-	// forEach didn't work here
-	const duplicateCheck = (inputNumber) =>
-		ships.some((elem) => elem.shipNr === inputNumber);
-
+	//erase logic
 	const eraseHandler = (e) => {
-		setShips((oldShips) =>
-			oldShips.filter((item) => item.shipNr !== e.target.parentElement.id)
+		setBeforeData(
+			beforeData.filter((item) => item.shipNr !== e.target.parentElement.id)
+		);
+		setAfterData(
+			afterData.filter((item) => item.id !== e.target.parentElement.id)
 		);
 	};
 
@@ -69,6 +103,7 @@ function App() {
 				<input
 					type='text'
 					name='shipInput'
+					id='shipInput'
 					className='input'
 					placeholder='Enter shipment number here'
 				/>
@@ -77,14 +112,8 @@ function App() {
 				</button>
 			</form>
 			<div className='card-container'>
-				{ships.map((item, index) => {
-					return (
-						<Parcel
-							key={index}
-							eraseHandler={eraseHandler}
-							shipNr={item.shipNr}
-						/>
-					);
+				{afterData.map((item, index) => {
+					return <Parcel key={index} eraseHandler={eraseHandler} data={item} />;
 				})}
 			</div>
 		</div>
