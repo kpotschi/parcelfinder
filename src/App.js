@@ -113,9 +113,7 @@ function App() {
 			</form>
 			<div className='card-container'>
 				{afterData.map((item, index) => {
-					return (
-						<Parcel key={index} eraseHandler={eraseHandler} shipNr={item.id} />
-					);
+					return <Parcel key={index} eraseHandler={eraseHandler} data={item} />;
 				})}
 			</div>
 		</div>
