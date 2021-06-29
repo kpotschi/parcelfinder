@@ -8,10 +8,11 @@ function App() {
 	const [beforeData, setBeforeData] = useState([]);
 	const [afterData, setAfterData] = useState([]);
 
-	//localstorage logic
 	useEffect(() => {
 		if (localStorage.getItem('localList')) {
-			setBeforeData(JSON.parse(localStorage.getItem('localList')));
+			JSON.parse(localStorage.getItem('localList')).forEach((item) =>
+				fetchTrackingInfo(item.shipNr)
+			);
 		}
 	}, []);
 
@@ -19,18 +20,11 @@ function App() {
 		localStorage.setItem('localList', JSON.stringify(beforeData));
 	}, [beforeData]);
 
-	//API call logic
-
-	useEffect(() => {
-		setAfterData([]);
-		beforeData.forEach((parcel) => fetchTrackingInfo(parcel.shipNr));
-	}, [beforeData]);
-
-	const fetchTrackingInfo = (shipNr) => {
+	const fetchTrackingInfo = (number) => {
 		const options = {
 			method: 'GET',
 			url: 'https://api-eu.dhl.com/track/shipments',
-			params: { trackingNumber: `${shipNr}` },
+			params: { trackingNumber: `${number}` },
 			headers: { 'DHL-API-Key': `${process.env.REACT_APP_DHL_API_KEY}` },
 		};
 
@@ -38,44 +32,54 @@ function App() {
 			.request(options)
 			.then(function (response) {
 				const parcelData = response.data.shipments;
-				setAfterData((oldData) => [...oldData, parcelData[0]]);
+				setBeforeData((oldBefore) => [
+					...oldBefore,
+					{ shipNr: parcelData[0].id, carrier: 'DHL' },
+				]);
+				setAfterData((oldAfter) => [...oldAfter, parcelData[0]]);
 			})
 			.catch(function (error) {
-				console.error(error);
+				showError('Parcel not found');
 			});
 	};
 
-	//submit logic & duplicate check
+	// // error logic
+
+	const showError = (message) => {
+		let errorDisplay = document.createElement('p');
+		errorDisplay.innerText = message;
+		errorDisplay.className = 'errorMsg';
+
+		document
+			.querySelector('#form')
+			.parentNode.insertBefore(
+				errorDisplay,
+				document.querySelector('#form').nextSibling
+			);
+	};
+
+	//submit logic
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		document.querySelector('#errorMsg')?.remove();
+		document.querySelector('.errorMsg')?.remove();
 
 		if (beforeData.some((elem) => elem.shipNr === e.target.shipInput.value)) {
-			let errorDisplay = document.createElement('p');
-			errorDisplay.innerText = 'Parcel already in list';
-			errorDisplay.id = 'errorMsg';
-
-			document
-				.querySelector('#form')
-				.parentNode.insertBefore(
-					errorDisplay,
-					document.querySelector('#form').nextSibling
-				);
+			showError('Parcel already in list');
 
 			return;
 		}
 
-		setBeforeData((oldShips) => [
-			...oldShips,
-			{ shipNr: `${e.target.shipInput.value}`, carrier: 'DHL' },
-		]);
+		fetchTrackingInfo(e.target.shipInput.value);
 	};
 
 	//erase logic
 	const eraseHandler = (e) => {
 		setBeforeData(
 			beforeData.filter((item) => item.shipNr !== e.target.parentElement.id)
+		);
+		setAfterData(
+			afterData.filter((item) => item.id !== e.target.parentElement.id)
 		);
 	};
 
