@@ -107,6 +107,14 @@ function App() {
 					className='input'
 					placeholder='Enter shipment number here'
 				/>
+
+				<select id='carrierSelect' name='carrierSelect'>
+					<option value='' disabled selected>
+						<i class='fas fa-sort-down'></i>
+					</option>
+					<option value='DHL'>DHL</option>
+					<option value='UPS'>UPS</option>
+				</select>
 				<button type='submit' className='submit'>
 					Search
 				</button>
