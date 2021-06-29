@@ -1,4 +1,5 @@
-import './App.css';
+// import './App.css';
+import './index.css';
 import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel';
@@ -41,10 +42,10 @@ function App() {
 			.catch(function (error) {
 				switch (error.response.status) {
 					case 400:
-						showError('Parcel not found');
+						showError('Parcel not found.');
 						break;
 					case 429:
-						showError('No more API requests possible');
+						showError('No more API requests possible.');
 						break;
 					default:
 						showError('Unknown error');
@@ -60,13 +61,16 @@ function App() {
 		errorDisplay.innerText = message;
 		errorDisplay.className = 'errorMsg';
 
-		document
-			.querySelector('#form')
-			.parentNode.insertBefore(
-				errorDisplay,
-				document.querySelector('#form').nextSibling
-			);
-	};
+		// document
+		// 	.querySelector('#form')
+		// 	.parentNode.insertBefore(
+		// 		errorDisplay,
+		// 		document.querySelector('#form').nextSibling
+		// 	);
+
+			document
+			.querySelector('.card-container').appendChild(errorDisplay);
+		};
 
 	//submit logic
 	const submitHandler = (e) => {
@@ -75,7 +79,7 @@ function App() {
 		document.querySelector('.errorMsg')?.remove();
 
 		if (beforeData.some((elem) => elem.shipNr === e.target.shipInput.value)) {
-			showError('Parcel already in list');
+			showError('Parcel already in list.');
 
 			return;
 		}
