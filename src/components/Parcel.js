@@ -1,58 +1,45 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import dhlLogo from "../images/dhl-brands.svg";
+import React from 'react';
 
-const Parcel = ({ shipNr, eraseHandler }) => {
-  const [info, setInfo] = useState([]);
+import dhlLogo from '../images/dhl-brands.svg';
 
-  const options = {
-    method: "GET",
-    url: "https://api-eu.dhl.com/track/shipments",
-    params: { trackingNumber: `${shipNr}` },
-    headers: { "DHL-API-Key": `${process.env.REACT_APP_DHL_API_KEY}` },
-  };
+const Parcel = ({ data, eraseHandler }) => {
+	let convertTime = data.events[0]?.timestamp;
 
-  useEffect(() => {
-    axios
-      .request(options)
-      .then(function (response) {
-        const allData = response.data.shipments;
-        setInfo(allData);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    //eslint-disable-next-line
-  }, []);
-
-  return (
-    <div className="card" id={shipNr}>
-      <span className="hide" onClick={eraseHandler}>
-        X
-      </span>
-      <div className="card-row">
-        <h3>DHL Shipment</h3>
-        <img src={dhlLogo} className="provider-logo" alt="Provider Logo" />
-      </div>
-      <div className="card-row">
-        <span>Tracking number: </span>
-        <span>{shipNr}</span>
-      </div>
-      <div className="card-row">
-        <span>Destination: </span>
-        <span>{info[0]?.destination.address.addressLocality}</span>
-      </div>
-      <div className="card-row">
-        <span>Status: </span>
-        <span>{info[0].status.status}</span>
-      </div>
-      <div className="card-row">
-        <span>Expected delivery: </span>
-        <span>{}</span>
-      </div>
-    </div>
-  );
+	return (
+		<div className='card' id={data.id}>
+			<span className='hide' onClick={eraseHandler}></span>
+			<div className='card-row'>
+				<h3>DHL Shipment</h3>
+				<img src={dhlLogo} className='provider-logo' alt='Provider Logo' />
+			</div>
+			<div className='card-row'>
+				<span>Tracking number: </span>
+				<span>{data.id}</span>
+			</div>
+			<div className='card-row'>
+				<span>From</span>
+				<span>
+					{data.origin.address.countryCode ??
+						data.origin.address.addressLocality}
+				</span>
+			</div>
+			<div className='card-row'>
+				<span>To</span>
+				<span>
+					{data.destination.address.countryCode ??
+						data.destination.address.addressLocality}
+				</span>
+			</div>
+			<div className='card-row'>
+				<span>Current location: </span>
+				<span>{data.status.description}</span>
+			</div>
+			<div className='card-row'>
+				<span>Last updated: </span>
+				<span>{convertTime}</span>
+			</div>
+		</div>
+	);
 };
 
 export default Parcel;

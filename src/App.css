@@ -37,7 +37,7 @@
 	}
 }
 
-#errorMsg {
+.errorMsg {
 	background-color: rgb(255, 130, 130);
 	transition: all 1000ms ease;
 }
