@@ -41,15 +41,15 @@ const Parcel = ({ shipNr, eraseHandler }) => {
       </div>
       <div className="card-row">
         <span>Destination: </span>
-        <span>{info[0]?.events[0].description}</span>
+        <span>{info[0]?.destination.address.addressLocality}</span>
       </div>
       <div className="card-row">
-        <span>Current location: </span>
-        <span>Kitzingen, Germany</span>
+        <span>Status: </span>
+        <span>{info[0].status.status}</span>
       </div>
       <div className="card-row">
         <span>Expected delivery: </span>
-        <span>here could be a very long sentence</span>
+        <span>{}</span>
       </div>
     </div>
   );
