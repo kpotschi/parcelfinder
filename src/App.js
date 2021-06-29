@@ -39,7 +39,17 @@ function App() {
 				setAfterData((oldAfter) => [...oldAfter, parcelData[0]]);
 			})
 			.catch(function (error) {
-				showError('Parcel not found');
+				switch (error.response.status) {
+					case 400:
+						showError('Parcel not found');
+						break;
+					case 429:
+						showError('No more API requests possible');
+						break;
+					default:
+						showError('Unknown error');
+						break;
+				}
 			});
 	};
 
