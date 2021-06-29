@@ -1,34 +1,57 @@
-
 import './App.css';
 import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel';
+import axios from 'axios';
 
 function App() {
-	const [ships, setShips] = useState([]);
+	const [beforeData, setBeforeData] = useState([]);
+	const [afterData, setAfterData] = useState([]);
 
 	//localstorage logic
 	useEffect(() => {
 		if (localStorage.getItem('localList')) {
-			setShips(JSON.parse(localStorage.getItem('localList')));
+			setBeforeData(JSON.parse(localStorage.getItem('localList')));
 		}
 	}, []);
 
 	useEffect(() => {
-		localStorage.setItem('localList', JSON.stringify(ships));
-	}, [ships]);
+		localStorage.setItem('localList', JSON.stringify(beforeData));
+	}, [beforeData]);
 
+	//API call logic
+
+	useEffect(() => {
+		setAfterData([]);
+		beforeData.forEach((parcel) => fetchTrackingInfo(parcel.shipNr));
+	}, [beforeData]);
+
+	const fetchTrackingInfo = (shipNr) => {
+		const options = {
+			method: 'GET',
+			url: 'https://api-eu.dhl.com/track/shipments',
+			params: { trackingNumber: `${shipNr}` },
+			headers: { 'DHL-API-Key': `${process.env.REACT_APP_DHL_API_KEY}` },
+		};
+
+		axios
+			.request(options)
+			.then(function (response) {
+				const parcelData = response.data.shipments;
+				setAfterData((oldData) => [...oldData, parcelData[0]]);
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+	};
+
+	//submit logic & duplicate check
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		// question mark operator
 		document.querySelector('#errorMsg')?.remove();
 
-		// if (document.querySelector('#errorMsg')) {
-		// 	document.querySelector('#errorMsg').remove();
-		// }
-
-		if (duplicateCheck(e.target.shipInput.value)) {
+		if (beforeData.some((elem) => elem.shipNr === e.target.shipInput.value)) {
 			let errorDisplay = document.createElement('p');
 			errorDisplay.innerText = 'Parcel already in list';
 			errorDisplay.id = 'errorMsg';
@@ -43,19 +66,16 @@ function App() {
 			return;
 		}
 
-		setShips((oldShips) => [
+		setBeforeData((oldShips) => [
 			...oldShips,
-			{ shipNr: `${e.target.shipInput.value}`, delService: 'DHL' },
+			{ shipNr: `${e.target.shipInput.value}`, carrier: 'DHL' },
 		]);
 	};
 
-	// forEach didn't work here
-	const duplicateCheck = (inputNumber) =>
-		ships.some((elem) => elem.shipNr === inputNumber);
-
+	//erase logic
 	const eraseHandler = (e) => {
-		setShips((oldShips) =>
-			oldShips.filter((item) => item.shipNr !== e.target.parentElement.id)
+		setBeforeData(
+			beforeData.filter((item) => item.shipNr !== e.target.parentElement.id)
 		);
 	};
 
@@ -69,6 +89,7 @@ function App() {
 				<input
 					type='text'
 					name='shipInput'
+					id='shipInput'
 					className='input'
 					placeholder='Enter shipment number here'
 				/>
@@ -77,13 +98,9 @@ function App() {
 				</button>
 			</form>
 			<div className='card-container'>
-				{ships.map((item, index) => {
+				{afterData.map((item, index) => {
 					return (
-						<Parcel
-							key={index}
-							eraseHandler={eraseHandler}
-							shipNr={item.shipNr}
-						/>
+						<Parcel key={index} eraseHandler={eraseHandler} shipNr={item.id} />
 					);
 				})}
 			</div>
