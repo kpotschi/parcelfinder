@@ -7,6 +7,7 @@ import axios from 'axios';
 function App() {
 	const [beforeData, setBeforeData] = useState([]);
 	const [afterData, setAfterData] = useState([]);
+	
 
 	useEffect(() => {
 		if (localStorage.getItem('localList')) {
@@ -15,6 +16,8 @@ function App() {
 			);
 		}
 	}, []);
+
+
 
 	useEffect(() => {
 		localStorage.setItem('localList', JSON.stringify(beforeData));
@@ -73,7 +76,7 @@ function App() {
 		e.preventDefault();
 
 		document.querySelector('.errorMsg')?.remove();
-
+			//forEach didn`t work
 		if (beforeData.some((elem) => elem.shipNr === e.target.shipInput.value)) {
 			showError('Parcel already in list');
 

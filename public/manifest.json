@@ -1,5 +1,5 @@
 {
-  "short_name": "React App",
+  "short_name": "Parcelfinder",
   "name": "Create React App Sample",
   "icons": [
     {
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "shipping-fast-solid.svg",
       "type": "image/png",
       "sizes": "192x192"
     },
