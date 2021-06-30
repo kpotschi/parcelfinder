@@ -1,17 +1,19 @@
 import './App.css';
 import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
-import Parcel from './components/Parcel';
+import Parcel from './components/Parcel.jsx';
+import Carrier from './components/Carrier.jsx';
 import axios from 'axios';
 
 function App() {
 	const [beforeData, setBeforeData] = useState([]);
 	const [afterData, setAfterData] = useState([]);
+	const carriers = ['DHL', 'UPS'];
 
 	useEffect(() => {
 		if (localStorage.getItem('localList')) {
 			JSON.parse(localStorage.getItem('localList')).forEach((item) =>
-				fetchTrackingInfo(item.shipNr)
+				fetchTrackingInfo(item.shipNr, item.carrier)
 			);
 		}
 	}, []);
@@ -20,7 +22,7 @@ function App() {
 		localStorage.setItem('localList', JSON.stringify(beforeData));
 	}, [beforeData]);
 
-	const fetchTrackingInfo = (number) => {
+	const fetchTrackingInfo = (number, carrier) => {
 		const options = {
 			method: 'GET',
 			url: 'https://api-eu.dhl.com/track/shipments',
@@ -34,8 +36,9 @@ function App() {
 				const parcelData = response.data.shipments;
 				setBeforeData((oldBefore) => [
 					...oldBefore,
-					{ shipNr: parcelData[0].id, carrier: 'DHL' },
+					{ shipNr: parcelData[0].id, carrier: carrier },
 				]);
+				parcelData[0].carrier = carrier;
 				setAfterData((oldAfter) => [...oldAfter, parcelData[0]]);
 			})
 			.catch(function (error) {
@@ -80,7 +83,10 @@ function App() {
 			return;
 		}
 
-		fetchTrackingInfo(e.target.shipInput.value);
+		fetchTrackingInfo(
+			e.target.shipInput.value,
+			document.querySelector('#carrierSelect').value
+		);
 	};
 
 	//erase logic
@@ -108,12 +114,17 @@ function App() {
 					placeholder='Enter shipment number here'
 				/>
 
-				<select id='carrierSelect' name='carrierSelect'>
+				<select
+					id='carrierSelect'
+					name='carrierSelect'
+					className='carrierSelect'
+				>
 					<option value='' disabled selected>
-						<i class='fas fa-sort-down'></i>
+						Select Carrier
 					</option>
-					<option value='DHL'>DHL</option>
-					<option value='UPS'>UPS</option>
+					{carriers.map((item) => (
+						<Carrier key={item} value={item} />
+					))}
 				</select>
 				<button type='submit' className='submit'>
 					Search
