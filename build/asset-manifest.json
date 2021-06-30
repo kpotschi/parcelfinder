@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.84968377.chunk.css",
+    "main.js": "/static/js/main.cf4a4954.chunk.js",
+    "main.js.map": "/static/js/main.cf4a4954.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.aec4a56f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.aec4a56f.js.map",
+    "static/js/2.fd8d6c5a.chunk.js": "/static/js/2.fd8d6c5a.chunk.js",
+    "static/js/2.fd8d6c5a.chunk.js.map": "/static/js/2.fd8d6c5a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.84968377.chunk.css.map": "/static/css/main.84968377.chunk.css.map",
+    "static/js/2.fd8d6c5a.chunk.js.LICENSE.txt": "/static/js/2.fd8d6c5a.chunk.js.LICENSE.txt",
+    "static/media/dhl-brands.98507257.svg": "/static/media/dhl-brands.98507257.svg",
+    "static/media/shipping-fast-solid.dc7b0b73.svg": "/static/media/shipping-fast-solid.dc7b0b73.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aec4a56f.js",
+    "static/js/2.fd8d6c5a.chunk.js",
+    "static/css/main.84968377.chunk.css",
+    "static/js/main.cf4a4954.chunk.js"
+  ]
+}
