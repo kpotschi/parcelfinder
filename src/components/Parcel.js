@@ -7,7 +7,7 @@ const Parcel = ({ data, eraseHandler }) => {
 
 	return (
 		<div className='card' id={data.id}>
-			<span className='hide' onClick={eraseHandler}></span>
+			<span className='hide' onClick={eraseHandler}>X</span>
 			<div className='card-row'>
 				<h3>DHL Shipment</h3>
 				<img src={dhlLogo} className='provider-logo' alt='Provider Logo' />
