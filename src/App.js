@@ -132,6 +132,7 @@ function App() {
 					Search
 				</button>
 			</form>
+			<div className='error-display'></div>
 			<div className='card-container'>
 				{afterData.map((item, index) => {
 					return <Parcel key={index} eraseHandler={eraseHandler} data={item} />;
