@@ -59,14 +59,6 @@ function App() {
     let errorDisplay = document.createElement("p");
     errorDisplay.innerText = message;
     errorDisplay.className = "errorMsg";
-
-    // document
-    //   .querySelector(".card-container")
-    //   .parentNode.insertBefore(
-    //     errorDisplay,
-    //     document.querySelector(".card-container").nextSibling
-    //   );
-
     document.querySelector(".error-display").appendChild(errorDisplay);
   };
 
@@ -109,6 +101,11 @@ function App() {
           className="input"
           placeholder="Enter shipment number here"
         />
+        <select name="carrier" id="carrier-select" className="carrier-select">
+          <option value="">Choose carrier</option>
+          <option value="dhl">DHL</option>
+          <option value="ups">UPS</option>
+        </select>
         <button type="submit" className="submit">
           Search
         </button>
