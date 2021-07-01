@@ -1,9 +1,9 @@
-import './App.css';
 import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel.jsx';
 import Carrier from './components/Carrier.jsx';
 import axios from 'axios';
+import './index.css';
 
 function App() {
 	const [beforeData, setBeforeData] = useState([]);
@@ -63,12 +63,14 @@ function App() {
 		errorDisplay.innerText = message;
 		errorDisplay.className = 'errorMsg';
 
-		document
-			.querySelector('#form')
-			.parentNode.insertBefore(
-				errorDisplay,
-				document.querySelector('#form').nextSibling
-			);
+		// document
+		//   .querySelector(".card-container")
+		//   .parentNode.insertBefore(
+		//     errorDisplay,
+		//     document.querySelector(".card-container").nextSibling
+		//   );
+
+		document.querySelector('.error-display').appendChild(errorDisplay);
 	};
 
 	//submit logic
@@ -117,7 +119,7 @@ function App() {
 				<select
 					id='carrierSelect'
 					name='carrierSelect'
-					className='carrierSelect'
+					className='carrier-select'
 				>
 					<option value='' disabled selected>
 						Select Carrier
