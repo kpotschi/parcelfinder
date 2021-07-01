@@ -1,12 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,700;1,400&display=swap");
 
-body {
-  margin: 0;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 1.2rem;
-}
-
-/* colors */
+/* colors as custom properties */
 
 :root {
   --dark-primary-color: #5d4037;
@@ -16,6 +10,13 @@ body {
   --primary-color: #795548;
   --primary-text: #212121;
   --secondary-text: #757575;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.2rem;
+  /* color: var(--primary-text); */
 }
 
 .header {
