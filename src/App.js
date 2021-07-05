@@ -57,31 +57,19 @@ function App() {
 	};
 
 	// // error logic
-
 	const showError = (message) => {
 		let errorDisplay = document.createElement('p');
 		errorDisplay.innerText = message;
 		errorDisplay.className = 'errorMsg';
-
-		// document
-		//   .querySelector(".card-container")
-		//   .parentNode.insertBefore(
-		//     errorDisplay,
-		//     document.querySelector(".card-container").nextSibling
-		//   );
-
 		document.querySelector('.error-display').appendChild(errorDisplay);
 	};
 
 	//submit logic
 	const submitHandler = (e) => {
 		e.preventDefault();
-
 		document.querySelector('.errorMsg')?.remove();
-
 		if (beforeData.some((elem) => elem.shipNr === e.target.shipInput.value)) {
 			showError('Parcel already in list');
-
 			return;
 		}
 
@@ -115,13 +103,12 @@ function App() {
 					className='input'
 					placeholder='Enter shipment number here'
 				/>
-
 				<select
 					id='carrierSelect'
 					name='carrierSelect'
 					className='carrier-select'
 				>
-					<option value='' disabled selected>
+					<option selected='selected' style={{ display: 'none' }}>
 						Select Carrier
 					</option>
 					{carriers.map((item) => (

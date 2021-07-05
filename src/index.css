@@ -60,34 +60,9 @@ body {
 }
 
 .carrier-select {
-	/* border-right: none; */
 	padding: 0.6rem 0.3rem;
-	background-color: #fff;
-	color: gray;
-}
-
-.carrier-select:focus-visible {
-	outline: none;
-	color: black;
-}
-.carrier-select:visited {
-	color: black;
-}
-
-.carrier-select {
-  /* border-right: none; */
-  padding: 0.55rem 0.3rem;
-  background-color: #fff;
-  color: gray;
-}
-
-.carrier-select:focus-visible {
-  outline: none;
-  color: black;
-}
-
-.carrier-select:visited {
-  color: black;
+	/* background-color: #fff; */
+	/* color: black; */
 }
 
 .input {
