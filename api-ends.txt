@@ -1,2 +1,0 @@
-info[0]?.events[0].description
-info[0]?.events[0].status.statusCode

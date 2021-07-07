@@ -1,6 +1,23 @@
 {
 	"name": "parcelfinder",
-	"version": "0.1.0",
+	"version": "0.1.1",
+	"author": {
+		"name": "Kevin Potschien",
+		"email": "kpotschien@gmail.com",
+		"url": "https://github.com/kpotschi"
+	},
+	"contributors": [
+		{
+			"name": "Melanie",
+			"email": "please@fill.out",
+			"url": "https://github.com/Melanie-codegirl"
+		},
+		{
+			"name": "Darko Talan",
+			"email": "grande3.14@outlook.de",
+			"url": "https://github.com/DarkoTal-an"
+		}
+	],
 	"private": true,
 	"dependencies": {
 		"axios": "^0.21.1",
