@@ -1,0 +1,63 @@
+.card {
+	width: 355px;
+	font-weight: lighter;
+	margin: 1rem 0;
+	border: 1px solid var(--dark-primary-color);
+	border-radius: 4px;
+	padding: 0.5rem 2rem;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	background-color: var(--light-primary-color);
+	position: relative;
+}
+
+.card h3 {
+	margin: 0.5rem 0;
+}
+
+.card-row {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+
+.provider-logo {
+	height: 5rem;
+	position: absolute;
+	right: 0rem;
+	top: -1.1rem;
+}
+
+.card span {
+	margin-bottom: 0.3rem;
+}
+
+.card span:nth-child(2) {
+	text-align: right;
+}
+
+.hide {
+	height: 21px;
+	width: 21px;
+	border-radius: 50%;
+	border: 1.5px solid var(--dark-primary-color);
+	position: absolute;
+	right: -0.5rem;
+	top: -0.5rem;
+	background-color: var(--accent-color);
+	cursor: pointer;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	font-size: smaller;
+	font-weight: bolder;
+}
+
+.card:hover .hide {
+	display: flex;
+}
+
+.card span:nth-child(2) {
+	text-align: right;
+}

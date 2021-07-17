@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,700;1,400&display=swap');
+
+:root {
+	--dark-primary-color: #5d4037;
+	--accent-color: #ff9800;
+	--divider-color: #bdbdbd;
+	--light-primary-color: #d7ccc8;
+	--primary-color: #795548;
+	--primary-text: #212121;
+	--secondary-text: #757575;
+	--error: #ffc0c0;
+}
+
+#header {
+	height: 6rem;
+}
+
+.brand {
+	display: inline;
+	color: #fff;
+	font-weight: lighter;
+	letter-spacing: 1.5px;
+}
+
+.brand--strong {
+	font-weight: bolder;
+	color: var(--accent-color);
+}
+
+#header__logo {
+	width: 3rem;
+	margin-left: 30px;
+}
+
+#shipInput {
+	border-radius: 10px 10px 0px 0px;
+}
+
+form {
+	min-width: 80%;
+}
+
+#carrierSelect {
+	border-radius: 0px 0px 0px 0px;
+}
+
+#submitButton {
+	border-radius: 0px 0px 10px 10px;
+}
+
+#shipInput:focus {
+	box-shadow: none !important;
+	border: 1px solid var(--accent-color) !important;
+}
+
+#carrierSelect:focus {
+	box-shadow: none !important;
+	border: 1px solid var(--accent-color) !important;
+}
+#submitButton:focus {
+	box-shadow: none !important;
+}
+
+@media (min-width: 768px) {
+	form {
+		min-width: 700px;
+	}
+	#shipInput {
+		border-radius: 10px 0px 0px 10px;
+	}
+
+	#carrierSelect {
+		border-radius: 0px 0px 0px 0px;
+	}
+
+	#submitButton {
+		border-radius: 0px 10px 10px 0px;
+	}
+}
+
+.error-display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+}
+
+.errorMsg {
+	width: 355px;
+	padding: 0.2rem 2rem;
+	text-align: center;
+	background-color: var(--error);
+	border: 1px solid var(--dark-primary-color);
+	border-radius: 10px;
+	transition: all 1000ms ease;
+}
+
+.card-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 0.3rem;
+	margin-top: 30px;
+}
+
+/* media query */
+
+/* @media (max-width: 440px) {
+	.form {
+		flex-direction: column;
+	}
+	.input {
+		width: 70vw;
+		margin-bottom: 10px;
+	}
+	.input,
+	.submit {
+		border: 1px solid var(--dark-primary-color);
+		border-radius: 4px;
+	}
+	.input:focus-visible + .submit {
+		border-bottom: 1px solid var(--dark-primary-color);
+		border-left: 1px solid var(--dark-primary-color);
+	}
+	.submit:active {
+		box-shadow: 0px 0px 5px #5d4037;
+	}
+	.card {
+		width: 80vw;
+		padding: 0.5rem 1rem;
+	}
+	span:first-child {
+		font-weight: 400;
+	}
+	.errorMsg {
+		width: 93vw;
+		padding: 0.2rem 0;
+	}
+} */
