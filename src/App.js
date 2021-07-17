@@ -96,7 +96,7 @@ function App() {
 				id='header'
 				className='d-flex justify-content-center align-items-center bg-dark border-bottom border-secondary'
 			>
-				<h1>
+				<h1 className='brand__text'>
 					<span className='brand brand--strong'>Parcel</span>
 					<span className='brand brand--light'>finder</span>
 				</h1>
@@ -104,7 +104,7 @@ function App() {
 			</div>
 
 			<div className='bg-light d-flex justify-content-center'>
-				<form onSubmit={submitHandler} className='my-4'>
+				<form onSubmit={submitHandler} id='form'>
 					<div
 						id='form__container'
 						className='d-flex flex-column flex-md-row align-items-center justify-content-center'
