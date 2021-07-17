@@ -2,9 +2,11 @@ import React from 'react';
 
 import dhlLogo from '../images/dhl-brands.svg';
 import upsLogo from '../images/ups-brands.svg';
+import formatDate from "./Functions"
 
 const Parcel = ({ data, eraseHandler }) => {
 	let convertTime = data.events[0]?.timestamp;
+	let niceDatetime = formatDate(convertTime); // Timestamp function from Functions-different variations
 
 	return (
 		<div className='card' id={data.id}>
@@ -41,10 +43,12 @@ const Parcel = ({ data, eraseHandler }) => {
 			</div>
 			<div className='card-row'>
 				<span>Last updated: </span>
-				<span>{convertTime}</span>
+				<span id="timestamp">{niceDatetime}</span> 		
+
 			</div>
 		</div>
 	);
 };
 
 export default Parcel;
+
