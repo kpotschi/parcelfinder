@@ -2,6 +2,8 @@ import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel.jsx';
 import Carrier from './components/Carrier.jsx';
+import { Footer } from './components/Footer.jsx';
+
 import axios from 'axios';
 import './index.css';
 
@@ -125,6 +127,7 @@ function App() {
 					return <Parcel key={index} eraseHandler={eraseHandler} data={item} />;
 				})}
 			</div>
+			<Footer />
 		</div>
 	);
 }
