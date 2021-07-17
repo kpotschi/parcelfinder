@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel.jsx';
 import Carrier from './components/Carrier.jsx';
 import axios from 'axios';
-import './index.css';
+import './styles/App.css';
 
 function App() {
 	const [beforeData, setBeforeData] = useState([]);
@@ -91,34 +91,55 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1 className='header'>
-				<span className='strong'>Parcel</span>finder
-				<img src={logo} className='logo' alt='Parcelfinder Logo'></img>
-			</h1>
-			<form className='form' id='form' onSubmit={submitHandler}>
-				<input
-					type='text'
-					name='shipInput'
-					id='shipInput'
-					className='input'
-					placeholder='Enter shipment number here'
-				/>
-				<select
-					id='carrierSelect'
-					name='carrierSelect'
-					className='carrier-select'
-				>
-					<option selected='selected' style={{ display: 'none' }}>
-						Select Carrier
-					</option>
-					{carriers.map((item) => (
-						<Carrier key={item} value={item} />
-					))}
-				</select>
-				<button type='submit' className='submit'>
-					Search
-				</button>
-			</form>
+			<div
+				id='header'
+				className='d-flex justify-content-center align-items-center bg-dark border-bottom border-secondary'
+			>
+				<h1 className='brand'>
+					<span className='brand--strong'>Parcel</span>
+					finder
+				</h1>
+				<img src={logo} id='header__logo' alt='Parcelfinder Logo' />
+			</div>
+
+			<div class='bg-light d-flex justify-content-center'>
+				<form onSubmit={submitHandler} className='my-4'>
+					<div
+						id='form__container'
+						className='d-flex flex-column flex-md-row align-items-center justify-content-center'
+					>
+						<input
+							type='text'
+							name='shipInput'
+							id='shipInput'
+							placeholder='Enter shipment number here'
+							className='form-control'
+						/>
+
+						<select
+							id='carrierSelect'
+							name='carrierSelect'
+							className='form-select'
+						>
+							<option selected style={{ display: 'none' }}>
+								Select Carrier
+							</option>
+							{carriers.map((item) => (
+								<Carrier key={item} value={item} />
+							))}
+						</select>
+
+						<button
+							id='submitButton'
+							type='submit'
+							className='btn btn-secondary w-100'
+						>
+							Search
+						</button>
+					</div>
+				</form>
+			</div>
+
 			<div className='error-display'></div>
 			<div className='card-container'>
 				{afterData.map((item, index) => {
