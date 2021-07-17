@@ -91,6 +91,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			<img className='bgimage' src={logo} alt='parcelfinder logo' />
 			<div
 				id='header'
 				className='d-flex justify-content-center align-items-center bg-dark border-bottom border-secondary'

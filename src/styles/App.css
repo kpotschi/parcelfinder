@@ -11,10 +11,14 @@
 	--error: #ffc0c0;
 }
 
-.App {
-	background-image: url(../images/shipping-fast-solid.svg);
-	background-repeat: no-repeat;
-	background-position: center;
+.bgimage {
+	position: absolute;
+	max-width: 800px;
+	min-width: 400px;
+	top: calc(50% + 6rem);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0.09;
 }
 
 #header {
@@ -109,38 +113,3 @@ form {
 	padding-top: 0.3rem;
 	margin-top: 30px;
 }
-
-/* media query */
-
-/* @media (max-width: 440px) {
-	.form {
-		flex-direction: column;
-	}
-	.input {
-		width: 70vw;
-		margin-bottom: 10px;
-	}
-	.input,
-	.submit {
-		border: 1px solid var(--dark-primary-color);
-		border-radius: 4px;
-	}
-	.input:focus-visible + .submit {
-		border-bottom: 1px solid var(--dark-primary-color);
-		border-left: 1px solid var(--dark-primary-color);
-	}
-	.submit:active {
-		box-shadow: 0px 0px 5px #5d4037;
-	}
-	.card {
-		width: 80vw;
-		padding: 0.5rem 1rem;
-	}
-	span:first-child {
-		font-weight: 400;
-	}
-	.errorMsg {
-		width: 93vw;
-		padding: 0.2rem 0;
-	}
-} */
