@@ -1,19 +1,21 @@
 .card {
-	width: 355px;
+	width: 400px;
 	font-weight: lighter;
 	margin: 1rem 0;
 	border: 1px solid var(--dark-primary-color);
-	border-radius: 4px;
+	border-radius: 10px !important;
 	padding: 0.5rem 2rem;
 	display: flex;
 	flex-direction: column;
 	text-align: left;
-	background-color: var(--light-primary-color);
+	background-color: #d7ccc8 !important;
 	position: relative;
 }
 
-.card h3 {
+.card__header {
+	font-weight: bold;
 	margin: 0.5rem 0;
+	font-size: 1.5rem;
 }
 
 .card-row {

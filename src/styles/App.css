@@ -19,6 +19,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	opacity: 0.09;
+	z-index: -4;
 }
 
 #header {
@@ -92,17 +93,13 @@ form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 30px;
 }
 
 .errorMsg {
-	width: 355px;
-	padding: 0.2rem 2rem;
+	width: 100%;
+	padding: 0.6rem 2rem;
 	text-align: center;
 	background-color: var(--error);
-	border: 1px solid var(--dark-primary-color);
-	border-radius: 10px;
-	transition: all 1000ms ease;
 }
 
 .card-container {

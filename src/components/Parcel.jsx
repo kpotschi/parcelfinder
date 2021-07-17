@@ -12,7 +12,7 @@ const Parcel = ({ data, eraseHandler }) => {
 				X
 			</span>
 			<div className='card-row'>
-				<h3>Shipment</h3>
+				<div className='card__header'>Shipment</div>
 				<img
 					src={data.carrier === 'DHL' ? dhlLogo : upsLogo}
 					className='provider-logo'
