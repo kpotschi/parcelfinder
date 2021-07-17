@@ -102,7 +102,7 @@ function App() {
 				<img src={logo} id='header__logo' alt='Parcelfinder Logo' />
 			</div>
 
-			<div class='bg-light d-flex justify-content-center'>
+			<div className='bg-light d-flex justify-content-center'>
 				<form onSubmit={submitHandler} className='my-4'>
 					<div
 						id='form__container'
@@ -121,9 +121,7 @@ function App() {
 							name='carrierSelect'
 							className='form-select'
 						>
-							<option selected style={{ display: 'none' }}>
-								Select Carrier
-							</option>
+							<option style={{ display: 'none' }}>Select Carrier</option>
 							{carriers.map((item) => (
 								<Carrier key={item} value={item} />
 							))}

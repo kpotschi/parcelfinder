@@ -11,6 +11,12 @@
 	--error: #ffc0c0;
 }
 
+.App {
+	background-image: url(../images/shipping-fast-solid.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 #header {
 	height: 6rem;
 }
