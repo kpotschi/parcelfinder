@@ -2,7 +2,7 @@ import React from 'react';
 
 import dhlLogo from '../images/dhl-brands.svg';
 import upsLogo from '../images/ups-brands.svg';
-import formatDate from "./Functions"
+import formatDate from '../functions/formatDate.function';
 
 const Parcel = ({ data, eraseHandler }) => {
 	let convertTime = data.events[0]?.timestamp;
@@ -10,7 +10,9 @@ const Parcel = ({ data, eraseHandler }) => {
 
 	return (
 		<div className='card' id={data.id}>
-			<span className='hide' onClick={eraseHandler}>X</span>
+			<span className='hide' onClick={eraseHandler}>
+				X
+			</span>
 			<div className='card-row'>
 				<h3>Shipment</h3>
 				<img
@@ -43,12 +45,10 @@ const Parcel = ({ data, eraseHandler }) => {
 			</div>
 			<div className='card-row'>
 				<span>Last updated: </span>
-				<span id="timestamp">{niceDatetime}</span> 		
-
+				<span id='timestamp'>{niceDatetime}</span>
 			</div>
 		</div>
 	);
 };
 
 export default Parcel;
-
