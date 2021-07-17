@@ -8,7 +8,7 @@ const Parcel = ({ data, eraseHandler }) => {
 
 	return (
 		<div className='card' id={data.id}>
-			<span className='hide' onClick={eraseHandler}>
+			<span className='card__deleteButton' onClick={eraseHandler}>
 				X
 			</span>
 			<div className='card-row'>

@@ -61,7 +61,7 @@ function App() {
 		let errorDisplay = document.createElement('p');
 		errorDisplay.innerText = message;
 		errorDisplay.className = 'errorMsg';
-		document.querySelector('.error-display').appendChild(errorDisplay);
+		document.querySelector('#errorDisplay').appendChild(errorDisplay);
 	};
 
 	//submit logic
@@ -75,7 +75,7 @@ function App() {
 
 		fetchTrackingInfo(
 			e.target.shipInput.value,
-			document.querySelector('#carrierSelect').value
+			document.querySelector('#form__carrierSelect').value
 		);
 	};
 
@@ -91,14 +91,14 @@ function App() {
 
 	return (
 		<div className='App'>
-			<img className='bgimage' src={logo} alt='parcelfinder logo' />
+			<img id='bg__image' src={logo} alt='parcelfinder logo' />
 			<div
 				id='header'
 				className='d-flex justify-content-center align-items-center bg-dark border-bottom border-secondary'
 			>
-				<h1 className='brand'>
-					<span className='brand--strong'>Parcel</span>
-					finder
+				<h1>
+					<span className='brand brand--strong'>Parcel</span>
+					<span className='brand brand--light'>finder</span>
 				</h1>
 				<img src={logo} id='header__logo' alt='Parcelfinder Logo' />
 			</div>
@@ -112,13 +112,13 @@ function App() {
 						<input
 							type='text'
 							name='shipInput'
-							id='shipInput'
+							id='form__shipInput'
 							placeholder='Enter shipment number here'
 							className='form-control'
 						/>
 
 						<select
-							id='carrierSelect'
+							id='form__carrierSelect'
 							name='carrierSelect'
 							className='form-select'
 						>
@@ -129,7 +129,7 @@ function App() {
 						</select>
 
 						<button
-							id='submitButton'
+							id='form__submitButton'
 							type='submit'
 							className='btn btn-secondary w-100'
 						>
@@ -139,8 +139,8 @@ function App() {
 				</form>
 			</div>
 
-			<div className='error-display'></div>
-			<div className='card-container'>
+			<div id='errorDisplay'></div>
+			<div id='cardContainer'>
 				{afterData.map((item, index) => {
 					return <Parcel key={index} eraseHandler={eraseHandler} data={item} />;
 				})}

@@ -25,10 +25,9 @@
 }
 
 .provider-logo {
-	height: 5rem;
+	height: 3rem;
 	position: absolute;
 	right: 0rem;
-	top: -1.1rem;
 }
 
 .card span {
@@ -39,7 +38,7 @@
 	text-align: right;
 }
 
-.hide {
+.card__deleteButton {
 	height: 21px;
 	width: 21px;
 	border-radius: 50%;
@@ -51,15 +50,10 @@
 	cursor: pointer;
 	display: none;
 	justify-content: center;
-	align-items: center;
 	font-size: smaller;
 	font-weight: bolder;
 }
 
-.card:hover .hide {
+.card:hover .card__deleteButton {
 	display: flex;
-}
-
-.card span:nth-child(2) {
-	text-align: right;
 }
