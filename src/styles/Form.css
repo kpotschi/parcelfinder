@@ -45,7 +45,11 @@
 }
 
 #form__submitButton:hover {
-	background-color: #ffa115;
+	background-color: #ffa41b;
+}
+
+#form__submitButton:active {
+	background-color: #ffd9a1;
 }
 
 #form__carrierSelect {
