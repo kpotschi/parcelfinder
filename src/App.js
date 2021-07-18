@@ -18,6 +18,7 @@ function App() {
 				fetchTrackingInfo(item.shipNr, item.carrier)
 			);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
