@@ -1,0 +1,17 @@
+#footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background-color: #fb9090;
+	bottom: 0;
+	font-size: 0.8rem;
+	padding: 20px;
+	font-size: 1rem;
+}
+
+#footer a {
+	color: var(--dark-primary-color);
+	text-decoration: none;
+}
