@@ -1,0 +1,24 @@
+@media (min-width: 768px) {
+	.brand {
+		font-size: 4rem;
+	}
+	#form {
+		min-width: 700px;
+		max-width: 1000px;
+	}
+
+	#form__container {
+		flex-direction: row;
+	}
+	#form__shipInput {
+		border-radius: 10px 0px 0px 10px;
+	}
+
+	#form__submitButton {
+		border-radius: 0px 10px 10px 0px;
+	}
+
+	.form__inputs {
+		height: 45px;
+	}
+}

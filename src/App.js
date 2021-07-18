@@ -1,8 +1,10 @@
 import logo from './images/shipping-fast-solid.svg';
 import { useEffect, useState } from 'react';
 import Parcel from './components/Parcel.jsx';
-import Carrier from './components/Carrier.jsx';
+import Form from './components/Form.jsx';
+import Header from './components/Header.jsx';
 import axios from 'axios';
+
 import './styles/App.css';
 
 function App() {
@@ -92,52 +94,9 @@ function App() {
 	return (
 		<div className='App'>
 			<img id='bg__image' src={logo} alt='parcelfinder logo' />
-			<div
-				id='header'
-				className='d-flex justify-content-center align-items-center bg-dark border-bottom border-secondary'
-			>
-				<h1 className='brand__text'>
-					<span className='brand brand--strong'>Parcel</span>
-					<span className='brand brand--light'>finder</span>
-				</h1>
-				<img src={logo} id='header__logo' alt='Parcelfinder Logo' />
-			</div>
+			<Header />
 
-			<div className='bg-light d-flex justify-content-center'>
-				<form onSubmit={submitHandler} id='form'>
-					<div
-						id='form__container'
-						className='d-flex flex-column flex-md-row align-items-center justify-content-center'
-					>
-						<input
-							type='text'
-							name='shipInput'
-							id='form__shipInput'
-							placeholder='Enter shipment number here'
-							className='form-control'
-						/>
-
-						<select
-							id='form__carrierSelect'
-							name='carrierSelect'
-							className='form-select'
-						>
-							<option style={{ display: 'none' }}>Select Carrier</option>
-							{carriers.map((item) => (
-								<Carrier key={item} value={item} />
-							))}
-						</select>
-
-						<button
-							id='form__submitButton'
-							type='submit'
-							className='btn btn-secondary w-100'
-						>
-							Search
-						</button>
-					</div>
-				</form>
-			</div>
+			<Form carriers={carriers} submitHandler={submitHandler} />
 
 			<div id='errorDisplay'></div>
 			<div id='cardContainer'>

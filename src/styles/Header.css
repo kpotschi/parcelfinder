@@ -1,0 +1,38 @@
+#header {
+	padding: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--dark-primary-color);
+	border-bottom: 2px solid var(--accent-color);
+}
+
+#bg__image {
+	position: absolute;
+	max-width: 800px;
+	min-width: 400px;
+	top: calc(50% + 6rem);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0.09;
+	z-index: -4;
+}
+
+.brand {
+	color: #fff;
+	letter-spacing: 1.5px;
+	font-size: 3rem;
+}
+
+.brand--light {
+	font-weight: 300;
+}
+.brand--strong {
+	font-weight: bold;
+	color: var(--accent-color);
+}
+
+#header__logo {
+	width: 3rem;
+	margin-left: 16px;
+}

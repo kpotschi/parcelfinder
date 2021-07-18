@@ -1,0 +1,60 @@
+#form {
+	margin: 32px 0 32px 0;
+	min-width: 80%;
+}
+
+#form__top__container {
+	display: flex;
+	justify-content: center;
+	background-color: var(--divider-color);
+}
+
+#form__container {
+	display: flex;
+	flex-direction: column;
+}
+
+.form__inputs {
+	width: 100%;
+	font-weight: 400;
+	font-size: 1rem;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 38px;
+	padding: 0.375rem 0.75rem;
+	border: 1px solid var(--divider-color);
+	outline: 0;
+}
+
+#form__shipInput {
+	border-radius: 10px 10px 0px 0px;
+}
+
+#form__shipInput::placeholder {
+	color: var(--secondary-text);
+}
+
+#form__shipInput:focus {
+	border: 1px solid var(--accent-color);
+}
+
+#form__submitButton {
+	border-radius: 0px 0px 10px 10px;
+	background-color: var(--accent-color);
+}
+
+#form__submitButton:hover {
+	background-color: #ffa115;
+}
+
+#form__carrierSelect {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 16px 12px;
+}
+
+#form__carrierSelect:focus {
+	border: 1px solid var(--accent-color);
+}
