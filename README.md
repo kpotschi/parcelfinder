@@ -8,3 +8,4 @@ Every non-closed is being saved into local storage and called from API on App lo
 ### We are using a Deutsch Post development API for tracking the parcels
 -local browser storage to store the parcel numbers 
 
+![](parcelf.png)
