@@ -10,4 +10,9 @@ Every non-closed is being saved into local storage and called from API on App lo
 
 ![](parcelf.png)
 
+##DHL parcel numbers used for testing:
+142775112730
+4381443301
+142775291429
+
 ![](parcelfinder.png)
