@@ -8,12 +8,14 @@ Every non-closed is being saved into local storage and called from API on App lo
 ### We are using a Deutsch Post development API for tracking the parcels
 -local browser storage to store the parcel numbers 
 
-#https://parcel-finder.netlify.app/
+#   https://parcel-finder.netlify.app/
 
 ##DHL parcel numbers used for testing:
-1.142775112730
-2.4381443301
-3.142775291429
+142775112730
+3.
+4381443301
+
+142775291429
 
 ![](parcelf.png)
 ![](parcelfinder.png)
